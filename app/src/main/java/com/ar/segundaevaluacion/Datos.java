@@ -8,25 +8,15 @@ import android.graphics.Bitmap;
 
 public class Datos {
 
-    private String Id;
     private Bitmap Img;
     private String Ruta;
 
     public Datos(String ruta, Bitmap img ) {
-        ;
-        setImg(img);
-        setRuta(ruta);
+        Img = img;
+        Ruta = ruta;
     }
     public Datos (){
 
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
     }
 
     public Bitmap getImg() {

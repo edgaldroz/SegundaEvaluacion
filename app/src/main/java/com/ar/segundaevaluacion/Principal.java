@@ -9,8 +9,12 @@ import android.os.ParcelFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,8 +26,9 @@ public class Principal extends AppCompatActivity {
     private Adaptador Adapter;
     private ArrayList<Datos> arrayList;
     private Button btnAgregar;
-    private ListView lista;
     private int PICK_PHOTO_FOR_AVATAR=3;
+    private Animation anim_in, anim_out;
+    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,10 @@ public class Principal extends AppCompatActivity {
 
         Adapter = new Adaptador(this, arrayList);
 
-        lista = (ListView) findViewById(R.id.lstImagenes);
+        ListView lista = (ListView) findViewById(R.id.lstImagenes);
+
+        this.img = (ImageView) findViewById(R.id.img);
+
 
         lista.setAdapter(Adapter);
 
@@ -46,6 +54,9 @@ public class Principal extends AppCompatActivity {
                 pickImage();
             }
         });
+
+
+
     }
     public void pickImage() {
         Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
