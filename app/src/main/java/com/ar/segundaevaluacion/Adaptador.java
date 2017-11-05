@@ -53,7 +53,7 @@ public class Adaptador extends ArrayAdapter<Datos> {
             public void onClick(View view) {
                 if(es_zoomIN) {
                     view.startAnimation(anim_in);
-                }else{
+                }else if (!es_zoomIN){
                     view.startAnimation(anim_out);
                 }
                 es_zoomIN=!es_zoomIN;

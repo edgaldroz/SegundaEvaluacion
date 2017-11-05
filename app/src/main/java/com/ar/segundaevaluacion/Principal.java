@@ -85,4 +85,5 @@ public class Principal extends AppCompatActivity {
         parcelFileDescriptor.close();
         return image;
     }
+
 }
