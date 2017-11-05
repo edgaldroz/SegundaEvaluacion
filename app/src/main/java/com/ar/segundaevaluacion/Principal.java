@@ -27,11 +27,12 @@ public class Principal extends AppCompatActivity {
     private ArrayList<Datos> arrayList;
     private Button btnAgregar;
     private int PICK_PHOTO_FOR_AVATAR=3;
+    private Animation anim_in,anim_out; ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-
+        img = (ImageView) findViewById(R.id.img);
         btnAgregar = (Button) findViewById(R.id.btnAgregar);
 
         arrayList = new ArrayList<>();
@@ -41,7 +42,6 @@ public class Principal extends AppCompatActivity {
         ListView lista = (ListView) findViewById(R.id.lstImagenes);
 
         lista.setAdapter(Adapter);
-
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

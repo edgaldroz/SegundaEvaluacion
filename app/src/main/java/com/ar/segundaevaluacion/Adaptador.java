@@ -37,6 +37,8 @@ public class Adaptador extends ArrayAdapter<Datos> {
         TextView lblId = (TextView) convertView.findViewById(R.id.id);
         TextView lblRuta = (TextView) convertView.findViewById(R.id.lblRuta);
          img = (ImageView) convertView.findViewById(R.id.img);
+
+
         es_zoomIN = true;
         anim_in = AnimationUtils.loadAnimation(getContext(), R.anim.zoom_in);
         anim_in.setDuration(1000);
@@ -49,7 +51,12 @@ public class Adaptador extends ArrayAdapter<Datos> {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animacionesIN_OUT();
+                if(es_zoomIN) {
+                    view.startAnimation(anim_in);
+                }else{
+                    view.startAnimation(anim_out);
+                }
+                es_zoomIN=!es_zoomIN;
             }
         });
 
@@ -62,12 +69,5 @@ public class Adaptador extends ArrayAdapter<Datos> {
 
         return convertView;
     }
-    private void animacionesIN_OUT(){
-        if(es_zoomIN) {
-            img.startAnimation(anim_in);
-        }else{
-            img.startAnimation(anim_out);
-        }
-        es_zoomIN=!es_zoomIN;
-    }
+
 }
