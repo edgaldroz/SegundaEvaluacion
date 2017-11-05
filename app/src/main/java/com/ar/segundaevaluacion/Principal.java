@@ -27,9 +27,6 @@ public class Principal extends AppCompatActivity {
     private ArrayList<Datos> arrayList;
     private Button btnAgregar;
     private int PICK_PHOTO_FOR_AVATAR=3;
-    private Animation anim_in, anim_out;
-    private ImageView img;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +40,6 @@ public class Principal extends AppCompatActivity {
 
         ListView lista = (ListView) findViewById(R.id.lstImagenes);
 
-        this.img = (ImageView) findViewById(R.id.img);
-
-
         lista.setAdapter(Adapter);
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +48,6 @@ public class Principal extends AppCompatActivity {
                 pickImage();
             }
         });
-
-
 
     }
     public void pickImage() {

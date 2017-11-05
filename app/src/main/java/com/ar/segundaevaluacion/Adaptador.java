@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,9 @@ import java.util.List;
  */
 
 public class Adaptador extends ArrayAdapter<Datos> {
+    private Animation anim_in,anim_out;
+    Boolean   es_zoomIN;
+    ImageView img;
     public Adaptador(Context context,List<Datos> objects) {
         super(context, 0, objects);
     }
@@ -31,7 +36,23 @@ public class Adaptador extends ArrayAdapter<Datos> {
         }
         TextView lblId = (TextView) convertView.findViewById(R.id.id);
         TextView lblRuta = (TextView) convertView.findViewById(R.id.lblRuta);
-        ImageView img = (ImageView) convertView.findViewById(R.id.img);
+         img = (ImageView) convertView.findViewById(R.id.img);
+        es_zoomIN = true;
+        anim_in = AnimationUtils.loadAnimation(getContext(), R.anim.zoom_in);
+        anim_in.setDuration(1000);
+        anim_in.setFillAfter(true);
+
+        anim_out = AnimationUtils.loadAnimation(getContext(),R.anim.zoom_out);
+        anim_out.setDuration(1000);
+        //anim_out.setFillAfter(true);
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animacionesIN_OUT();
+            }
+        });
+
         // mostrar los datos
         lblId.setText((position+1)+"");
         lblRuta.setText(datos.getRuta());
@@ -40,5 +61,13 @@ public class Adaptador extends ArrayAdapter<Datos> {
         // Return la convertView ya con los datos
 
         return convertView;
+    }
+    private void animacionesIN_OUT(){
+        if(es_zoomIN) {
+            img.startAnimation(anim_in);
+        }else{
+            img.startAnimation(anim_out);
+        }
+        es_zoomIN=!es_zoomIN;
     }
 }
